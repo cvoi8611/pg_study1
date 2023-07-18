@@ -1,0 +1,138 @@
+<!DOCTYPE HTML>	
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title> 스터디 html 정리 3주차 - 2 </title>
+    </head>
+    <body>
+        <h1>하계 방학 스터디 3주차 html 단어정리 - 2</h1>
+        
+        <h2>11. C++ auto 타입과 제네릭 타입</h2>
+        <p><b>auto 타입 - 대입되는 입력 값에 맞춰서 타입이 자동으로 정해지는 타입</b></p>
+        <p><b>Generic 타입 - 기본 타입을 일반화시켜 만든 새로운 타입</b></p>
+
+        <p>예를 들어</p>
+        <img src="https://cdn.discordapp.com/attachments/450315092190429187/1130750547222335580/image.png">
+        <p>위 코드에서 A 와 B 와 C의 자료형은 무엇일까?</p>
+        <p>auto가 알아서 입력받은 값을 읽고, 알맞은 자료형을 정해주기 때문에, A는 int 형, B는 float형, C는 String형으로 자료형이 정해진다</p>
+
+
+        <h2>12. void 포인터와 malloc</h2>
+        <p><b>void 포인터 - 타입이 없는 포인터</b></p>
+        <p><b>malloc - 동적 메모리 할당 함수이다</b></p>
+        <p>void 포인터는 타입이 없으므로 어떤 타입으로든 원하는 대로 캐스팅(casting)이 가능한 포인터이다.</p>
+        <p>void 포인터가 쓰이는 곳은 malloc이 있다.</p>
+        
+        <p>malloc의 역할은 원하는 만큼의 크기를 입력받고, 현재 메모리를 검사하여 원하는 만큼의 크기만큼의 빈공간을 찾아내서, 메모리를 할당하고, 메모리의 첫번째 주소 값을 반환한다.</p>
+        <p>그때, 반환되는 주소값은 타입이 존재하지 않는다.</p>
+        <p>따라서 malloc은 반환하는 타입이 없으므로 (void값을 리턴하므로) malloc의 형식(포맷)은 void* malloc([size_t], [size])</p>
+        <p>위에서 설명한 것 처럼 void 포인터는 어떤 타입으로든 원하는 대로 캐스팅(casting)이 가능한 포인터라고 하였다.</p>
+        <p>그러므로 malloc은 int형, double형, float형, char형 등으로 어떠한 형태로도 캐스팅하여 동적 메모리 할당을 할 수 있도록 해주는 포인터이다.</p>
+        
+        
+        <h2>13. gcc의 컴파일 과정</h2>
+        <p><b>gcc의 컴파일 과정은 총 4가지 과정으로 이루어저 있다.</b></p>
+        <img src="https://postfiles.pstatic.net/MjAxNzAyMTlfMzUg/MDAxNDg3NDY4MjA5NDA4.DgNtFUF-Fm9RwRxpYsM1aEcm0BPV0aJiJ2Ov03OtHHkg.bGzQAg_Qht4meXe_I9BqG1c99f36JIoPznsyyK72Jl8g.PNG.ambidext/GCC_CompilationProcess.png?type=w773">
+        <ul>
+            <li><p><b>1. 전처리 단계</b></p></li>
+            <li><p><b>2. 컴파일 단계</b></p></li>
+            <li><p><b>3. 어셈블 단계</b></p></li>
+            <li><p><b>4. 링크 단계</b></p></li>
+        </ul>
+
+        <table border = "2">
+            <th colspan="3" bgcolor="darkgray">gcc 컴파일 과정</th>
+            <tr align="center">
+                <td><p><b>&emsp;1. 전처리 단계&emsp;</b></p></td>
+                <td><p>codeFile.cpp -> (전처리) -> codeFile.i</p><p>소스 파일에서 전처리 단계를 거쳐 전처리된 파일 생성</p></td>
+            </tr>
+            <tr align="center">
+                <td><p><b>2. 컴파일 단계</b></p></td>
+                <td><p>codeFile.i -> (컴파일) -> codeFile.s</p><p>전처리된 파일에서 컴파일 단계를 거쳐 어셈블리어 파일 생성</p></td>
+            </tr>
+            <tr align="center">
+                <td><p><b>3. 어셈블 단계</b></p></td>
+                <td><p>codeFile.s -> (어셈블) -> codeFile.o</p><p>어셈블리어 파일에서 어셈블 단계를 거쳐 오브젝트 파일 생성</p></td>
+            </tr>
+            <tr align="center">
+                <td><p><b>4. 링크 단계</b></p></td>
+                <td><p>codeFile.o -> (링크) -> codeFile.exe</p><p>오브젝트 파일에서 링크 단계를 거쳐 실행 파일 생성</p></td>
+           </tr>
+        </table>
+        
+        <h2>14. nasm과 AT&T</h2>
+        <p><b>어셈블리어의 형식에는 대표적으로 nasm(인텔 방식)과 AT&T 방식이 존재한다.</b></p>
+        <ul><p>10 값을 eax 레지스터에 저장할 떄,</p>
+            <li><p>nasm 방식 - mov eax, 10</p></li>
+            <li><p>AT&T 방식 - mov $10, %eax</p></li>
+        </ul>
+        <p>AT&T 방식은 레지스터 앞에 %가 붙고, 값에도 $ 접두사가 붙음</p>
+
+
+        <h2>15. 빅 엔디안과 리틀 엔디안</h2>
+        <p><b>빅 엔디안(Big Endian) - 낮은 주소에 데이터의 높은 바이트부터 저장하는 방식</b></p>
+        <p><b>리틀 엔디안(Little Endian) - 낮은 주소에 데이터의 낮은 바이트를 저장하는 방식</b></p>
+        <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fbo7qv0%2Fbtrw5PZQhze%2FySfGQWyAT7jsdrqFKoIm1K%2Fimg.webp">
+        <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FkChLx%2FbtrwUk8xpSY%2FR7ZW8uqJTCztGHp3hTOf8K%2Fimg.webp">
+        
+        <p>빅 엔디안은 x86 아키텍처에 주로 사용되고, 리틀 엔디안은 주로 인텔 CPU에 사용된다.</p>
+        <p>서로 다른 엔디안은 호환되지 않으므로 이러한 문제를 방지하기 위해 네트워크에서는 빅 엔디안으로 통일하도록 되어 있다.</p>
+        
+        <h2>16. C 인라인 어셈블리</h2>
+        <p><b>C에서 지원하는 어셈블리 명령어를 사용 가능하게 해주는 기능</b></p>
+        <p>어셈블리 코드, output 변수, input 변수, 값이 바뀌는 레지스터를 명시</p>
+        <p>asm ("assembly code") or __asm__("assembly code") : ()안에 나오는 것이 어셈블리 코드</p>
+        <p>레지스터 접두사는 %, 피연산자 접두사는 $</p>
+        <p>ex - __asm__ ("movl $15, %eax;")</p>
+
+
+        <h2>17. 스트레스 테스트</h2>
+        <p><b>스트레스 테스트(Stress Test)는 어플리케이션이 실행 시에 필요로 하는 각종 리소스의 허용하는 한도를 넘어서서 비정상적은 높은 부하를 발생시켜보는 테스트</b></p>
+        <p>부하 상황이 오면 데이터를 잃어버리는 등의 시스템의 비정상적인 작동과 같은 결점(bug) 또는 결함(failure)을 찾기 위해 스트레스 테스트를 실시한다.</p>
+        <p>스트레스 테스트의 요지는 결국, 시스템 리소스의 한계점을 시험하려는 의도로 시행한다.</p>
+
+        <h2>18. 바이너리 코드와 보는 방법</h2>
+        <p><b>컴퓨터가 인식할 수 있는 0과 1로 이루어진 이진 코드를 바이너리 코드라고 한다.</b></p>
+        <p>바이너리 코드는 기계어를 포함한 0과 1로 이루어진 이진 코드를 말하는 것이고, 이 바이너리 코드를 보기 위해선,</p>
+        <p>1바이트(8비트)당 하나의 문자로 읽어서 16진수로 나타내면 나오는 수를 아스키 코드로 변환하면 바이너리 코드를 우리가 아는 일반적인 코드로 변환이 가능해진다.</p>
+        <img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2F3g8rH%2FbtqYKacJyzP%2Fk9RRKCcZcA702xstZvTox0%2Fimg.png" style="width:600px; height:300px;">
+        <p>위 사진은 바이너리 파일을 보기 쉽게 16진수로 변형하여 보여주는 에디터이다</p>
+        <p>일반적으로는 바이너리 코드는 사람이 읽고 이해하기 힘든 언어이므로 이렇게 16진수로 변환해주는 에디터를 사용하여 아스키 코드로 변환하여 바이너리 코드를 수정하는것이 일반적이다.</p>
+
+        <h2>19. 함수 호출 방식(cdecl, stdcall, fastcall)</h2>
+        <p><b>함수를 호출할 때 파라미터를 전달하는 방식에 따른 함수 호출 방식들</b></p>
+        <p>caller(호출자) - 함수를 호출한 쪽 , callee(피호출자) - 호출을 당한 쪽</p>
+        <p>ex - main()에서 print() 함수를 실행할 경우, main()이 Caller, print()는 Callee</p>
+        <ul><p><b>cdecl 방식</b></p>
+            <li><p>c언어 에서 주로 사용되는 방식으로 Caller에서 Stack을 정리</p></li>
+        </ul>
+        <ul><p><b>stdcall 방식</b></p>
+            <li><p>Win32 API에서 사용되는 방식으로 Calee에서 Stack을 정리</p></li>
+        </ul>
+        <ul><p><b>fastcall 방식</b></p>
+            <li><p>기본적으로 stdcall과 방식은 같으나, 함수에 전달하는 파라미터 일부(최대 2개)를 스택 메모리가 아닌 레지스터를 이용하여 전달</p></li>
+            <li><p>스택이 아닌 레지스터를 사용함으로서, 훨씬 더 빠른 속도로 작동함</p></li>
+        </ul>
+
+        <h2>20. 치트엔진과 인증크랙의 원리</h2>
+        <p><b>기본적인 원리는 리버스 엔지니어링으로부터 시작되며, 해당 프로그램의 소스 코드를 얻어내 수정하여 파일을 변조한다.</b></p>
+        <p><b>리버스 엔지니어링이란, 목표가 되는 장치, 프로그램이나 프로토콜을 분석하여 똑같은 동작을 만들어 내는 것</b></p>
+        <ul>
+            <li><p><b>치트 엔진</b></p></li>
+            <ul>
+                <li><p>치트 엔진은 리버스 엔지니어링에서 '프로그램이나 프로토콜을 <b>분석하여</b>'에 집중한 케이스이다.</p></li>
+                <li><p>치트 엔진의 원리는 여러가지가 있는데 그중 하나는 리버스 엔지니어링 하여 소스코드를 바이너리 코드로 변환해 16진수로 나열된 코드들을 수정해 메모리를 변조시킨다</p></li>
+            </ul>
+            <li><p><b>인증 크랙</b></p></li>
+            <ul>
+                <li><p>치트 엔진은 리버스 엔지니어링에서 '프로그램이나 프로토콜 <b>분석</b>' 에 집중하여 프로그램을 변조시키는 반면, 인증 크랙은 '똑같은 동작을 <b>만들어 내는 것</b>'에 집중하여 프로그램 '복제'가 주 목표이다.</p></li>
+                <li><p>인증 크랙의 기본적인 원리는 실행하기 전 인증 과정에서 가면을 쓰듯, 인증이 완료되지 않았음(프로그램을 구매하지 않았음)에도 불구하고 인증이 가능하도록 속여서 프로그램 실행이 가능하게끔 한다.</p></li>
+            </ul>
+        </ul>
+        
+        <p>그러나 이러한 행위는 둘 다 불법적인 행위에 속한다.</p>
+        <p>치트 엔진이나 인증 크랙과 같은 리버스 엔지니어링을 하는 것은 어떠한 프로그램을 분해하여 본인 입맛대로 불법 개조하거나, 프로그램을 불법 복제 하는 행위이며 이는 벌금 또는 징역까지 갈 수 있는 범죄에 해당한다.</p>
+        <p>물론 이런 행위를 시행할 프로그램이 오픈 소스 프로그램이라 변형시키는 것에 대한 허가가 나와있다면 문제가 없으니 이런 경우가 아니라면 사용을 자제하는것이 좋다.</p>
+
+    </body>
+</html>
