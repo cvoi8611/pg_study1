@@ -1,0 +1,83 @@
+*{
+    color : white;
+}
+
+
+input:-ms-input-placeholder {color: #a8a8a8;}
+input::-webkit-input-placeholder {color:#a8a8a8;}
+input::-moz-placeholder {color:#a8a8a8;}
+
+
+
+.header{
+    width : 100%;
+    height : 300px;
+    background-image: url("https://cdn.discordapp.com/attachments/450315092190429187/1133421864966950962/Blog_banner.jpg");
+}
+
+.left-menu{
+    box-sizing: border-box;
+    border-left: 2px solid #ffffff;
+    border-right: 2px solid #ffffff;
+    width : 20%;
+    height : 500px;
+    float : left;
+}
+
+
+
+.category li{
+    display : inline-block;
+    width : 50px;
+    text-align: center;
+    margin-left: 50px;
+    clear : both;
+}
+
+.search {
+    float :right;
+    height : 10px;
+    width: 60%;
+    border: 1px solid #1b5ac2;
+    background: #ffffff;
+}
+
+.search input{
+    color : black;
+    font-size: 16px;
+    height : 10px;
+    width : 40%;
+    padding : 10px;
+    border : 0px;
+    outline : none;
+    float : left;
+}
+
+.search button{
+    font-size: 16px;
+    width : 20%;
+    height : 100%;
+    border : 0px;
+    background : #1b5ac2;
+    outline : none;
+    float : right;
+    color : #ffffff;
+}
+
+.right-toolbar{
+    box-sizing: border-box;
+    border-top : 2px solid w#ffffff;
+    border-bottom: 2px solid #ffffff;
+    width : 80%;
+    height: 50px;
+    float : right;
+    vertical-align: top;
+}
+
+.right-menu{
+    width : 80%;
+    height: 450px;
+    float: right;
+    vertical-align: top;
+}
+
