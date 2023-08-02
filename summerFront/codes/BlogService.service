@@ -1,0 +1,11 @@
+[Unit]
+Description = Service of Covi's Blog
+
+[Service]
+ExecStart=/home/ubuntu/front/pg_study1/summerFront/codes/index.js
+Restart=always
+Group=nogroup
+WorkingDirectory=/home/ubuntu/front/pg_study1/summerFront/
+
+[Install]
+WantedBy=multi-user.target
