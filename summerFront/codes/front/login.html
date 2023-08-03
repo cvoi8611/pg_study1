@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="./login.css">
+    <!-- <link rel="stylesheet" type="text/css" href="./login.css"> -->
     <style>
         * {
             margin : 0;
             padding : 0;
         }
-
-
+        
+        
         .loginbox{
             display : flex;
             align-items: center;
@@ -18,17 +18,18 @@
             margin : 200px auto;
             width: 600px;
             height: 400px;
-            background-color: aquamarine;
+            background-color: white;
         }
-
+        
         .loginbox .account {
             display : block;
-            margin-bottom: 3px;
-            padding: 3px;
+            margin-bottom: 5px;
+            padding-top: 3px;
+            padding-bottom: 3px;
             border: 1px solid gray;
-            border-radius: 3px;
+            border-radius: 10px;
         }
-
+        
         .login {
             margin : auto 0 auto 0;
             display : flex;
@@ -39,16 +40,16 @@
             justify-content: center;
         }
 
-        .input {
-            /* align-items: center; */
-        }
-        #login {
+        .login h2 {
+            color : darkgray;
         }
 
-        #alert {
-
+        .login button {
+            display : flex;
+            
         }
     </style>
+
     <title>Login</title>
 </head>
 <body>
@@ -59,7 +60,7 @@
                 <input type="text" placeholder="ID" id="id" class="account">
                 <h2>PW</h2>
                 <input type="password" placeholder="Password" id="password" class="account">
-                <button id="login" class="account">login</button>
+                <button id="login" class="account">Login</button>
             </div>
         </div>
     </div>
