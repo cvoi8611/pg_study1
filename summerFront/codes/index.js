@@ -13,6 +13,20 @@ const cors = require('cors');
 const app = express();
 const port = 3000;
 
+app.use(express.static('front'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(
+    session({
+        //secret은 임의의 난수값
+        secret: 'fjh!8ko29*@9akwmdl@&',
+        resave: true,
+        saveUninitialized: true
+    })
+);
+
+
 app.listen(port, () => {
 	console.log(`Example app listening on port ${port}`);
 });
@@ -62,9 +76,9 @@ app.get('/signin', (req, res) => {
 
 app.post('/signin', (req, res) => {
 	//json 데이터 추출
-	const { name, age, address } = req.body;
+	const { user_name, user_id, user_pwd } = req.body;
 	
-	const sql = 'INSERT INTO DB1 (user_name, user_id, user_pwd) VALUES (${user_name}, ${user_id}, ${user_pwd})';
+	const sql = 'INSERT INTO DB1.User (user_name, user_id, user_pwd) VALUES (${user_name}, ${user_id}, ${user_pwd})';
 	connection.query(sql);
 });
 
