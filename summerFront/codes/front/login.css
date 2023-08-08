@@ -12,15 +12,17 @@
     margin : 200px auto;
     width: 600px;
     height: 400px;
-    background-color: aquamarine;
+    background-color: white;
 }
 
 .loginbox .account {
     display : block;
-    margin-bottom: 3px;
-    padding: 3px;
+    margin-bottom: 5px;
+    /* padding-top: 3px;
+    padding-bottom: 3px; */
+    padding : 6px 6px 6px 6px;
     border: 1px solid gray;
-    border-radius: 3px;
+    border-radius: 10px;
 }
 
 .login {
@@ -33,12 +35,18 @@
     justify-content: center;
 }
 
-.input {
-    /* align-items: center; */
-}
-#login {
+.login h2 {
+    color : darkgray;
 }
 
-#alert {
+.buttonline {
+    display: flex;
+    margin : 10px;
+    justify-content: space-between;
+}
 
+.login button {
+    margin: 10px;
+    height: 30px;
+    width: 60px;
 }
