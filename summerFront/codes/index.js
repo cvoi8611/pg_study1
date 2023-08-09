@@ -14,6 +14,7 @@ const app = express();
 const port = 3000;
 
 app.use(express.static('front'));
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
