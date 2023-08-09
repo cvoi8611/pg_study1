@@ -2,7 +2,61 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="signin.css?after">
+    <!-- <link rel="stylesheet" href="signin.css?after"> -->
+    <style>
+        * {
+            margin : 0;
+            padding : 0;
+        }
+        
+        
+        .signinbox{
+            display : flex;
+            align-items: center;
+            border: 3px solid black;
+            border-radius: 10px;
+            margin : 200px auto;
+            width: 600px;
+            height: 400px;
+            background-color: white;
+        }
+        
+        .signinbox .account {
+            display : block;
+            margin-bottom: 5px;
+            /* padding-top: 3px;
+            padding-bottom: 3px; */
+            padding : 6px 6px 6px 6px;
+            border: 1px solid gray;
+            border-radius: 10px;
+        }
+        
+        .signin {
+            margin : auto 0 auto 0;
+            display : flex;
+            width : 100%;
+            height : 100%;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .signin h2 {
+            color : darkgray;
+        }
+        
+        .buttonline {
+            display: flex;
+            margin : 10px;
+            justify-content: space-between;
+        }
+        
+        .signin button {
+            margin: 10px;
+            height: 30px;
+            width: 60px;
+        }
+    </style>
 
     <title>SignIn</title>
 </head>
