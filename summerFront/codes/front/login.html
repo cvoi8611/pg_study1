@@ -61,21 +61,20 @@
     <title>Login</title>
 </head>
 <body>
-    <div class="main">
-        <div class="loginbox">
-            <form action="/login" method="post">
+    <form action="/login" method="post">
+        <div class="main">
+            <div class="loginbox">
                 <div class="login">
                     <h2>ID</h2>
-                    <input type="text" placeholder="ID" id="user_id" class="account">
+                    <input type="text" placeholder="ID" class="account" name="user_id">
                     <h2>PW</h2>
-                    <input type="password" placeholder="Password" id="user_pwd" class="account">
+                    <input type="password" placeholder="Password" class="account" name="user_pwd">
                     <div class ="buttonline">
                         <button id="login" class="account">Login</button>
                     </div>
                 </div>
-            </form>
-            <button id="signin" onclick="location.href='./signin'" class="account">SignIn</button>
+            </div>
         </div>
-    </div>
+    </form>
 </body>
 </html>

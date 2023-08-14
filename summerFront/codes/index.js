@@ -1,27 +1,31 @@
 #!/usr/bin/node
+
 const express = require('express');
-const mysql = require('mysql');
-const dbconfig = require('./config/dbinfo.js');
-const connection = mysql.createConnection(dbconfig);
+const app = express();
+const port = 3000;
 
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 
+const mysql = require('mysql');
+const dbconfig = require('./config/dbinfo.js');
+const connection = mysql.createConnection(dbconfig);
+
 const path = require('path');
 const cors = require('cors');
-const app = express();
-const port = 3000;
 
-app.use(express.static('front'));
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname));
 
+app.use(express.static('public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(
     session({
         //secret은 임의의 난수값
-        secret: 'fjh!8ko29*@9akwmdl@&',
+        secret: 'WIh!8kO29*@9akwMdl@&',
         resave: true,
         saveUninitialized: true
     })
@@ -36,32 +40,43 @@ app.get('/',(req,res) => {
 });
 
 ///////////////
-//// 회원가입, 로그인, 로그아웃
+//// GET
 ///////////////
 
 app.get('/login', (req, res) => {
     res.sendFile(path.join(__dirname,'./','front','login.html'));
 });
 
+app.get('/signin', (req, res) => {
+    res.sendFile(path.join(__dirname,'./','front','signin.html'));
+});
+
+app.get('/post', (req, res) => {
+    res.sendFile(path.join(__dirname,'./','front','post.html'));
+});
+
+///////////////
+//// 회원가입, 로그인, 로그아웃
+///////////////
+
 app.post('/login', (req, res) => {
-    if (req.session.user ? req.session.user.id == 'test' : false) {
+    if (req.session.user_id ? req.session.user_pwd == 'test' : false) {
+        res.send("아이디 test 통과");
         res.redirect('/');
     }
-    else if(req.body.id == 'test' && req.body.pw == '1234') {
+    else if(req.body.user_id == 'test' && req.body.user_pwd == '1234') {
         req.session.user = {
             id: req.body.id,
         };
+        
         res.setHeader('Set-Cookie', ['user=' + req.body.id]);
+        res.send("아이디 test, 비밀번호 1234 통과");
         res.redirect('/');
     }
     else {
+        res.send("유효한 아이디/비밀번호가 아닙니다.");
         res.redirect('/login');
     }
-});
-
-
-app.get('/signin', (req, res) => {
-    res.sendFile(path.join(__dirname,'./','front','signin.html'));
 });
 
 app.post('/signin', (req, res) => {
