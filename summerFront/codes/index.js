@@ -39,6 +39,13 @@ app.get('/',(req,res) => {
 	res.sendFile(path.join(__dirname,'./','front','main.html'));
 });
 
+app.get('/api',(req,res) => {
+	connection.query('SELECT * FROM TB1', (error, rows) => {
+	if (error) throw error;
+	res.send(rows);
+	});
+});
+
 ///////////////
 //// GET
 ///////////////
