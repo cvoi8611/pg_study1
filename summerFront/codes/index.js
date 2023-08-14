@@ -47,11 +47,10 @@ app.post('/login', (req, res) => {
     if (req.session.user ? req.session.user.id == 'test' : false) {
         res.redirect('/');
     }
-    else if(req.body.id == 'covi' && req.body.pw == '8611') {
+    else if(req.body.id == 'test' && req.body.pw == '1234') {
         req.session.user = {
             id: req.body.id,
         };
-
         res.setHeader('Set-Cookie', ['user=' + req.body.id]);
         res.redirect('/');
     }
@@ -92,9 +91,6 @@ app.get('/logout', (req, res) => {
 // 라우팅
 ///////////
 
-app.get('/posts/:pid' ,(req, res) => {
-	const pageid = req.params.pid;
-	//page id로 쿼리 실행
-	//이후 , SSR 방식에 따라 작성?
-	res.render('posts', { title: req.params.pid , contents: 'this is SSR page' + req.params.pid });
-})
+app.get('/board/ssr/:bid', (req, res) => {
+    res.render('board', { title: req.params.bid , contents: 'this is SSR page' + req.params.bid });
+});

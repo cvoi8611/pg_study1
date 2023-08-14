@@ -61,19 +61,21 @@
     <title>Login</title>
 </head>
 <body>
-    <div class="main">
-        <div class="loginbox">
-            <div class="login">
-                <h2>ID</h2>
-                <input type="text" placeholder="ID" id="id" class="account">
-                <h2>PW</h2>
-                <input type="password" placeholder="Password" id="password" class="account">
-                <div class ="buttonline">
-                    <button onclick="location.href='./signin';"id="sign" class="account">Sign In</button>
-                    <button id="login" class="account">Login</button>
+    <form action="/login" method="post">
+        <div class="main">
+            <div class="loginbox">
+                <div class="login">
+                    <h2>ID</h2>
+                    <input type="text" placeholder="ID" id="id" class="account">
+                    <h2>PW</h2>
+                    <input type="password" placeholder="Password" id="password" class="account">
+                    <div class ="buttonline">
+                        <button onclick="location.href='./signin';"id="sign" class="account">Sign In</button>
+                        <button id="login" class="account login_event">Login</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </form>
 </body>
 </html>
