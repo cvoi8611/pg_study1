@@ -68,9 +68,12 @@ app.get('/signin', (req, res) => {
 app.post('/signin', (req, res) => {
 	//json 데이터 추출
 	const { user_name, user_id, user_pwd } = req.body;
-	
+
 	const sql = 'INSERT INTO DB1.User (user_name, user_id, user_pwd) VALUES (${user_name}, ${user_id}, ${user_pwd})';
 	connection.query(sql);
+
+    res.send("회원가입이 완료되었습니다.");
+    res.redirect('/login');
 });
 
 app.get('/logout', (req, res) => {

@@ -1,0 +1,493 @@
+<!DOCTYPE>
+ lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- <link rel="stylesheet" type="text/css" href="./post.css?after"> -->
+
+    <style>
+        body {
+            width : 100%;
+            height : 100%;
+            margin : 0;
+            background-color: #121212;
+        }
+        
+        .container {
+            display : flex;
+            flex-direction: row;
+            justify-content: center;
+        }
+        
+        .header {
+            display:flex;
+            flex-direction: column;
+        }
+        
+        .header_upper {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            height: 300px;
+            background-color: #2E2E2E;
+            flex-wrap:wrap;
+        }
+        
+        .header_lower {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            height: 82;
+            background-color: #2E2E2E;
+        }
+        
+        
+        .title {
+            display : flex;
+            flex-grow: 1;
+            justify-content: center;
+            align-items: center;
+            color : white;
+        }
+        
+        .sidebar_spot {
+            display : flex;
+            flex-direction: column;
+            justify-content: right;
+        }
+        
+        .sidebar{
+            display : flex;
+            flex-wrap : wrap;
+            align-items: center;
+            justify-content: center;
+            flex-basis: 60px;
+            width : 60px;
+            height: 60px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .menu_rest{
+            width:60px;
+            height:240px;
+        }
+        
+        input[id="sidebar"] {
+            display : none;
+        }
+        input[id="sidebar"] + label {
+            display : block;
+            width : 50px ;
+            height : 40px ;
+            position : relative ;
+            cursor : pointer;
+        }
+        input[id="sidebar"] + label span {
+            display : block;
+            position : absolute ;
+            width : 100%;
+            height : 5px;
+            border-radius : 30px;
+            background-color: #000;
+            transition : all .35s;
+        }
+        input[id="sidebar"] + label span:nth-child(1) {
+            top : 0;
+        }
+        input[id="sidebar"] + label span:nth-child(2) {
+            top : 50%;
+            transform:translateY(-50%);
+        }
+        input[id="sidebar"] + label span:nth-child(3) {
+            bottom : 0;
+        }
+        
+        .right_sidebar{
+            display : flex;
+            width : 300px;
+            height : 100%;
+            background : #222;
+            position : absolute;
+            top : 0;
+            right : -300px;
+            z-index : 3;
+            transition:all .35s;
+        }
+        
+        input[id="sidebar"]:checked + label + div {
+            right : 0;
+        }
+        input[id="sidebar"]:checked + label {
+            z-index: 4;
+        }
+        input[id="sidebar"]:checked + label span {
+            background: #fff;
+        }
+        
+        .sidebar_item{
+            display : flex;
+            flex-direction: column;
+            margin-top : 100px;
+            color : #fff;
+            font-size: 40px;
+        }
+        .sidebar_item input {
+            cursor : pointer;
+            border-top : 3px solid white;
+            font-size : 20px;
+            height : 100px;
+            width : 300px;
+            background-color: black;
+            color : white;
+        }
+        
+        .toolbar {
+            z-index : 1;
+            display : flex;
+            flex-direction: column-reverse;;
+            border-top : 3px solid white;
+            border-bottom : 3px solid white;
+            flex-wrap: wrap;
+            width : 100%;
+            height : 10%;
+        }
+        
+        .toolbar li {
+            float: left;
+            list-style: none;
+        }
+        
+        .toolbar a {
+            color: #fff;
+            text-decoration: none;
+            font-size:20px;
+        }
+        
+        .menu_line {
+            margin : 0;
+            padding : 0;
+            width: 100%;
+            overflow: hidden;
+        }
+        
+        .menu_line > li {
+            width: 20%;
+            float: left;
+            text-align: center;
+            line-height: 80px;
+            background-color: #121212;
+        }
+        
+        .menu_item > li {
+            position: relative;
+            border-bottom: 2px inset white;
+            float : none;
+            line-height: 80px;
+            background-color: #2E2E2E;
+        }
+        
+        .menu_item {
+            position: relative;
+            z-index : 2;
+            padding: 0;
+            height: 0;
+            overflow: hidden;
+        }
+        .menu_line > li:hover {
+            background-color: #252525;
+            transition-duration: 0.5s;
+        }
+        
+        .menu_line > li:hover .menu_item {
+            position: absolute;
+            width : 20%;
+            height: 250px;
+            transition-duration: 1s;
+        }
+        
+        .main {
+            display : flex;
+            flex-wrap: wrap;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .container {
+            display : flex;
+            flex-wrap : wrap;
+            width : 80%;
+            height : 100%;
+        }
+        
+        .toolbar {
+            z-index : 1;
+            display : flex;
+            flex-direction: row;
+            border-top : 3px solid white;
+            border-bottom : 3px solid white;
+            flex-wrap: wrap;
+            width : 100%;
+            height : 10%;
+        }
+        
+        .toolbar li {
+            float: left;
+            list-style: none;
+        }
+        
+        .toolbar a {
+            color: #fff;
+            text-decoration: none;
+            font-size:20px;
+        }
+        
+        .menu_line {
+            margin : 0;
+            padding : 0;
+            width: 100%;
+            overflow: hidden;
+        }
+        
+        .menu_line > li {
+            width: 20%;
+            float: left;
+            text-align: center;
+            line-height: 80px;
+            background-color: #121212;
+        }
+        
+        .menu_item > li {
+            position: relative;
+            border-bottom: 2px inset white;
+            float : none;
+            line-height: 80px;
+            background-color: #2E2E2E;
+        }
+        
+        .menu_item {
+            position: relative;
+            z-index : 2;
+            padding: 0;
+            height: 0;
+            overflow: hidden;
+        }
+        .menu_line > li:hover {
+            background-color: #252525;
+            transition-duration: 0.5s;
+        }
+        
+        .menu_line > li:hover .menu_item {
+            position: absolute;
+            width : 20%;
+            height: 250px;
+            transition-duration: 1s;
+        }
+        
+        .blogbody {
+            display : flex;
+            border-right : 3px solid white;
+            border-left : 3px solid white;
+            flex-direction: column;
+            flex-basis: 10;
+            text-align: center;
+            align-items: center;
+            margin-left: 20%;
+            margin-right: 20%;
+            width: 60%;
+            height : 100%;
+            background-color: #121212;
+            margin-bottom : 10%;
+        }
+        
+        .post {
+            display : flex;
+            justify-content: center;
+            width : 100%;
+            height: 80%;
+            border-top : 3px solid white;
+            border-bottom : 3px solid white;
+            background-color: #121212;
+            margin-top: 100px;
+        }
+        
+        .post .content {
+            display : flex;
+            justify-content: space-between;
+            width : 70%;
+            height: 100%;
+            border-left : 2px solid white;
+            border-right : 2px solid white;
+            background-color :#121212;
+            color : white;
+            padding-left: 30px;
+            padding-right: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .categoryline {
+            display: flex;
+            width : 100%;
+        }
+        
+        .category {
+            width : auto;
+            height: auto;
+            padding : 5px;
+            border : 2px solid white;
+            border-radius: 15px;
+            margin : 10px;
+        }
+        
+        
+        .buttonline {
+            display : flex;
+            width : 100%;
+            justify-content: space-between;
+            
+        }
+        
+        .buttonline button {
+            display : flex;
+            justify-content: center;
+            align-items: center;
+            width : 100px;
+            height : 50px;
+            margin-top : 15px;
+            margin-bottom: 15px;
+        }
+    </style>
+    <title>Covi's Blog</title>
+</head>
+
+<body>
+    <header class ="header">
+
+        <div class ="header_upper">
+            <p></p>
+            <div class ="title" onclick="location.href='./main'">
+                <h1 style="font-size:100px">Welcome To My Blog</h1>
+            </div>
+            
+            <div class="sidebar_spot">
+                <div class="sidebar">
+                    <input type="checkbox" id="sidebar">
+                    <label for="sidebar">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </label>
+                    <div class="right_sidebar">
+                        <div class ="sidebar_item">
+                            <input type="button" value='Home' id="btn" onclick="location.href='./main'">
+                            <input type="button" value='Login' id="btn" onclick="location.href='./login'">
+                            <input type="button" value='Signin' id="btn" onclick="location.href='./signin'">
+                            <input type="button" value='Write' id="btn" onclick="location.href='./'">
+                        </div>
+                    </div>
+                </div>
+                <div class="menu_rest" onclick="location.href='./main'"></div>
+            </div>            
+        </div>
+
+
+        <div class ="header_lower">
+            <div class="toolbar">
+                <ul class="menu_line">
+                    <li><a href="#">MENU1</a>
+                        <ul class="menu_item">
+                            <li><a href="#">SUB_MENU</a></li>
+                            <li><a href="#">SUB_MENU2</a></li>
+                            <li><a href="#">SUB_MENU3</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">MENU2</a>
+                        <ul class="menu_item">
+                            <li><a href="#">SUB_MENU</a></li>
+                            <li><a href="#">SUB_MENU2</a></li>
+                            <li><a href="#">SUB_MENU3</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">MENU3</a>
+                        <ul class="menu_item">
+                            <li><a href="#">SUB_MENU</a></li>
+                            <li><a href="#">SUB_MENU2</a></li>
+                            <li><a href="#">SUB_MENU3</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">MENU4</a>
+                        <ul class="menu_item">
+                            <li><a href="#">SUB_MENU</a></li>
+                            <li><a href="#">SUB_MENU2</a></li>
+                            <li><a href="#">SUB_MENU3</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">MENU5</a>
+                        <ul class="menu_item">
+                            <li><a href="#">SUB_MENU</a></li>
+                            <li><a href="#">SUB_MENU2</a></li>
+                            <li><a href="#">SUB_MENU3</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+
+    <div class = "main">
+        <div class = "blogbody">
+            <div class = "post">
+                <div class = "image">
+                </div>
+                <div class = "content">
+                    <div class = ">
+                        <p><h1> This is Post Title</h1></p>
+                        <p><h4> 정부는 예산에 변경을 가할 필요가 있을 때에는 추가경정예산안을 편성하여 국회에 제출할 수 있다. 환경권의 내용과 행사에 관하여는 법률로 정한다. 모든 국민은 법률이 정하는 바에 의하여 선거권을 가진다.
+
+                            근로자는 근로조건의 향상을 위하여 자주적인 단결권·단체교섭권 및 단체행동권을 가진다. 헌법개정은 국회재적의원 과반수 또는 대통령의 발의로 제안된다.
+                            
+                            모든 국민은 법률이 정하는 바에 의하여 국가기관에 문서로 청원할 권리를 가진다. 모든 국민은 자기의 행위가 아닌 친족의 행위로 인하여 불이익한 처우를 받지 아니한다.
+                            
+                            연소자의 근로는 특별한 보호를 받는다. 각급 선거관리위원회는 선거인명부의 작성등 선거사무와 국민투표사무에 관하여 관계 행정기관에 필요한 지시를 할 수 있다.
+                            
+                            선거에 관한 경비는 법률이 정하는 경우를 제외하고는 정당 또는 후보자에게 부담시킬 수 없다. 국가는 주택개발정책등을 통하여 모든 국민이 쾌적한 주거생활을 할 수 있도록 노력하여야 한다.
+                            
+                            정부는 회계연도마다 예산안을 편성하여 회계연도 개시 90일전까지 국회에 제출하고, 국회는 회계연도 개시 30일전까지 이를 의결하여야 한다. 사법권은 법관으로 구성된 법원에 속한다.
+                            
+                            제1항의 해임건의는 국회재적의원 3분의 1 이상의 발의에 의하여 국회재적의원 과반수의 찬성이 있어야 한다. 대통령은 내우·외환·천재·지변 또는 중대한 재정·경제상의 위기에 있어서 국가의 안전보장 또는 공공의 안녕질서를 유지하기 위하여 긴급한 조치가 필요하고 국회의 집회를 기다릴 여유가 없을 때에 한하여 최소한으로 필요한 재정·경제상의 처분을 하거나 이에 관하여 법률의 효력을 가지는 명령을 발할 수 있다.
+                            
+                            대법원장과 대법관이 아닌 법관은 대법관회의의 동의를 얻어 대법원장이 임명한다. 국토와 자원은 국가의 보호를 받으며, 국가는 그 균형있는 개발과 이용을 위하여 필요한 계획을 수립한다.
+                            
+                            국회의원의 수는 법률로 정하되, 200인 이상으로 한다. 평화통일정책의 수립에 관한 대통령의 자문에 응하기 위하여 민주평화통일자문회의를 둘 수 있다.
+                            
+                            여자의 근로는 특별한 보호를 받으며, 고용·임금 및 근로조건에 있어서 부당한 차별을 받지 아니한다. 선거와 국민투표의 공정한 관리 및 정당에 관한 사무를 처리하기 위하여 선거관리위원회를 둔다.
+                            
+                            이 헌법은 1988년 2월 25일부터 시행한다. 다만, 이 헌법을 시행하기 위하여 필요한 법률의 제정·개정과 이 헌법에 의한 대통령 및 국회의원의 선거 기타 이 헌법시행에 관한 준비는 이 헌법시행 전에 할 수 있다.
+                            
+                            법률이 헌법에 위반되는 여부가 재판의 전제가 된 경우에는 법원은 헌법재판소에 제청하여 그 심판에 의하여 재판한다. 법률은 특별한 규정이 없는 한 공포한 날로부터 20일을 경과함으로써 효력을 발생한다.
+                            
+                            의무교육은 무상으로 한다. 국가는 노인과 청소년의 복지향상을 위한 정책을 실시할 의무를 진다. 국회에서 의결된 법률안은 정부에 이송되어 15일 이내에 대통령이 공포한다.
+                            
+                            공무원의 신분과 정치적 중립성은 법률이 정하는 바에 의하여 보장된다. 국회의원은 현행범인인 경우를 제외하고는 회기중 국회의 동의없이 체포 또는 구금되지 아니한다.
+                            
+                            국가는 여자의 복지와 권익의 향상을 위하여 노력하여야 한다. 모든 국민은 행위시의 법률에 의하여 범죄를 구성하지 아니하는 행위로 소추되지 아니하며, 동일한 범죄에 대하여 거듭 처벌받지 아니한다.
+                            
+                            국가는 농업 및 어업을 보호·육성하기 위하여 농·어촌종합개발과 그 지원등 필요한 계획을 수립·시행하여야 한다. 국가는 대외무역을 육성하며, 이를 규제·조정할 수 있다. </h4></p>
+                    
+                </div>
+
+                <div class = "categoryline">
+                    <div class =category>Category 1</div>
+                    <div class = category>Category 2</div>
+                </div>
+                <div class = "buttonline">
+                    <button>Prev</button>
+                    <button>Next</button>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</body>
+<>
