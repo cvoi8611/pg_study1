@@ -13,7 +13,6 @@ const dbconfig = require('./config/dbinfo.js');
 const connection = mysql.createConnection(dbconfig);
 
 const path = require('path');
-const cors = require('cors');
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname));
@@ -62,13 +61,17 @@ app.get('/post', (req, res) => {
     res.sendFile(path.join(__dirname,'./','front','post.html'));
 });
 
+app.get('/header', (req, res) => {
+    res.sendFile(path.join(__dirname,'./','front','header.html'));
+});
+
 ///////////////
 //// 회원가입, 로그인, 로그아웃
 ///////////////
 
 app.post('/login', (req, res) => {
     if (req.session.user_id ? req.session.user_pwd == 'test' : false) {
-        res.send("아이디 test 통과");
+        console.log("아이디 test 통과");
         res.redirect('/');
     }
     else if(req.body.user_id == 'test' && req.body.user_pwd == '1234') {
@@ -77,11 +80,11 @@ app.post('/login', (req, res) => {
         };
         
         res.setHeader('Set-Cookie', ['user=' + req.body.id]);
-        res.send("아이디 test, 비밀번호 1234 통과");
+        console.log("아이디 test, 비밀번호 1234 통과");
         res.redirect('/');
     }
     else {
-        res.send("유효한 아이디/비밀번호가 아닙니다.");
+        console.log("잘못된 아이디, 비밀번호");
         res.redirect('/login');
     }
 });
@@ -93,7 +96,7 @@ app.post('/signin', (req, res) => {
 	const sql = 'INSERT INTO DB1.User (user_name, user_id, user_pwd) VALUES (${user_name}, ${user_id}, ${user_pwd})';
 	connection.query(sql);
 
-    res.send("회원가입이 완료되었습니다.");
+    console.log("회원가입이 완료되었습니다.");
     res.redirect('/login');
 });
 
@@ -105,6 +108,7 @@ app.get('/logout', (req, res) => {
         else {
             res.clearCookie('user');
             res.redirect('/');
+            console.log("로그아웃되었습니다.");
         }
     });
 });

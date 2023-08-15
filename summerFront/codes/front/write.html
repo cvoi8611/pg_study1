@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="./write.css?after">
+
+    <title>Covi's Blog</title>
+</head>
+
+<body>
+    <header class ="header">
+        <div class ="header_upper">
+            <p></p>
+            <div class ="title" onclick="location.href='./main.html'">
+                <h1 style="font-size:100px">Welcome To My Blog</h1>
+            </div>
+            
+            <div class="sidebar_spot">
+                <div class="sidebar">
+                    <input type="checkbox" id="sidebar">
+                    <label for="sidebar">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </label>
+                    <div class="right_sidebar">
+                        <div class ="sidebar_item">
+                            <input type="button" value='Home' id="btn" onclick="location.href='./main.html'">
+                            <input type="button" value='Login' id="btn" onclick="location.href='./login.html'">
+                            <input type="button" value='Signin' id="btn" onclick="location.href='./signin.html'">
+                            <input type="button" value='Write' id="btn" onclick="location.href='./write.html'">
+                        </div>
+                    </div>
+                </div>
+                <div class="menu_rest" onclick="location.href='./main.html'"></div>
+            </div>            
+        </div>
+
+
+        <div class ="header_lower">
+            <div class="toolbar">
+                <ul class="menu_line">
+                    <li><a href="#">MENU1</a>
+                        <ul class="menu_item">
+                            <li><a href="#">SUB_MENU</a></li>
+                            <li><a href="#">SUB_MENU2</a></li>
+                            <li><a href="#">SUB_MENU3</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">MENU2</a>
+                        <ul class="menu_item">
+                            <li><a href="#">SUB_MENU</a></li>
+                            <li><a href="#">SUB_MENU2</a></li>
+                            <li><a href="#">SUB_MENU3</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">MENU3</a>
+                        <ul class="menu_item">
+                            <li><a href="#">SUB_MENU</a></li>
+                            <li><a href="#">SUB_MENU2</a></li>
+                            <li><a href="#">SUB_MENU3</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">MENU4</a>
+                        <ul class="menu_item">
+                            <li><a href="#">SUB_MENU</a></li>
+                            <li><a href="#">SUB_MENU2</a></li>
+                            <li><a href="#">SUB_MENU3</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#">MENU5</a>
+                        <ul class="menu_item">
+                            <li><a href="#">SUB_MENU</a></li>
+                            <li><a href="#">SUB_MENU2</a></li>
+                            <li><a href="#">SUB_MENU3</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+
+    <div class = "main">
+        <div class = "blogbody">
+            <div class = "post">
+                <div class = "content">
+                    <div class = "html">
+                        <div class = "in_title">
+                            <input type="text" placeholder="제목을 입력하세요" class = "inp_title">
+                        </div>
+                        <div class = "in_content">
+                            <input type="text" placeholder="내용을 입력하세요" class = "inp_content">
+                        </div>
+                    </div>
+                    <div class = "categoryline">
+                        <label><input type="checkbox" class = category value="ctgr1"> Category 1</label>
+                        <label><input type="checkbox" class = category value="ctgr2"> Category 2</label>
+                        <label><input type="checkbox" class = category value="ctgr3"> Category 3</label>
+                        <label><input type="checkbox" class = category value="ctgr4"> Category 4</label>
+                        <label><input type="checkbox" class = category value="ctgr5"> Category 5</label>
+                    </div>
+                    <div class = "buttonline">
+                        <button>Back</button>
+                        <button>Upload</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -11,199 +11,6 @@
             background-color: #121212;
         }
         
-        .container {
-            display : flex;
-            flex-direction: row;
-            justify-content: center;
-        }
-        
-        .header {
-            display:flex;
-            flex-direction: column;
-        }
-        
-        .header_upper {
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-            height: 300px;
-            background-color: #2E2E2E;
-            flex-wrap:wrap;
-        }
-        
-        .header_lower {
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-            height: 82;
-            background-color: #2E2E2E;
-        }
-        
-        
-        .title {
-            display : flex;
-            flex-grow: 1;
-            justify-content: center;
-            align-items: center;
-            color : white;
-        }
-        
-        .sidebar_spot {
-            display : flex;
-            flex-direction: column;
-            justify-content: right;
-        }
-        
-        .sidebar{
-            display : flex;
-            flex-wrap : wrap;
-            align-items: center;
-            justify-content: center;
-            flex-basis: 60px;
-            width : 60px;
-            height: 60px;
-            border-radius: 10px;
-            text-align: center;
-        }
-        
-        .menu_rest{
-            width:60px;
-            height:240px;
-        }
-        
-        input[id="sidebar"] {
-            display : none;
-        }
-        input[id="sidebar"] + label {
-            display : block;
-            width : 50px ;
-            height : 40px ;
-            position : relative ;
-            cursor : pointer;
-        }
-        input[id="sidebar"] + label span {
-            display : block;
-            position : absolute ;
-            width : 100%;
-            height : 5px;
-            border-radius : 30px;
-            background-color: #000;
-            transition : all .35s;
-        }
-        input[id="sidebar"] + label span:nth-child(1) {
-            top : 0;
-        }
-        input[id="sidebar"] + label span:nth-child(2) {
-            top : 50%;
-            transform:translateY(-50%);
-        }
-        input[id="sidebar"] + label span:nth-child(3) {
-            bottom : 0;
-        }
-        
-        .right_sidebar{
-            display : flex;
-            width : 300px;
-            height : 100%;
-            background : #222;
-            position : absolute;
-            top : 0;
-            right : -300px;
-            z-index : 3;
-            transition:all .35s;
-        }
-        
-        input[id="sidebar"]:checked + label + div {
-            right : 0;
-        }
-        input[id="sidebar"]:checked + label {
-            z-index: 4;
-        }
-        input[id="sidebar"]:checked + label span {
-            background: #fff;
-        }
-        
-        .sidebar_item{
-            display : flex;
-            flex-direction: column;
-            margin-top : 100px;
-            color : #fff;
-            font-size: 40px;
-        }
-        .sidebar_item input {
-            cursor : pointer;
-            border-top : 3px solid white;
-            font-size : 20px;
-            height : 100px;
-            width : 300px;
-            background-color: black;
-            color : white;
-        }
-        
-        .toolbar {
-            z-index : 1;
-            display : flex;
-            flex-direction: column-reverse;;
-            border-top : 3px solid white;
-            border-bottom : 3px solid white;
-            flex-wrap: wrap;
-            width : 100%;
-            height : 10%;
-        }
-        
-        .toolbar li {
-            float: left;
-            list-style: none;
-        }
-        
-        .toolbar a {
-            color: #fff;
-            text-decoration: none;
-            font-size:20px;
-        }
-        
-        .menu_line {
-            margin : 0;
-            padding : 0;
-            width: 100%;
-            overflow: hidden;
-        }
-        
-        .menu_line > li {
-            width: 20%;
-            float: left;
-            text-align: center;
-            line-height: 80px;
-            background-color: #121212;
-        }
-        
-        .menu_item > li {
-            position: relative;
-            border-bottom: 2px inset white;
-            float : none;
-            line-height: 80px;
-            background-color: #2E2E2E;
-        }
-        
-        .menu_item {
-            position: relative;
-            z-index : 2;
-            padding: 0;
-            height: 0;
-            overflow: hidden;
-        }
-        .menu_line > li:hover {
-            background-color: #252525;
-            transition-duration: 0.5s;
-        }
-        
-        .menu_line > li:hover .menu_item {
-            position: absolute;
-            width : 20%;
-            height: 250px;
-            transition-duration: 1s;
-        }
-        
         .main {
             display : flex;
             flex-wrap: wrap;
@@ -245,6 +52,7 @@
         }
         
         .post .image {
+            cursor : pointer;
             display : flex;
             width : 40%;
             height : 100%;
@@ -252,6 +60,7 @@
         }
         
         .post .content {
+            cursor : pointer;
             display : flex;
             flex-direction: column;
             justify-content: space-between;
@@ -293,80 +102,18 @@
     </style>
 
     <title>Covi's Blog</title>
+
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script> <!-- 해더 include JS -->
+        <script type="text/javascript">
+        $(document).ready( function() {
+        $("#headers").load("header"); 
+        });
+    </script>
 </head>
+
 <body>
-    <header class ="header">
-
-        <div class ="header_upper">
-            <p></p>
-            <div class ="title" onclick="location.href='./'">
-                <h1 style="font-size:100px">Welcome To My Blog</h1>
-            </div>
-            
-            <div class="sidebar_spot">
-                <div class="sidebar">
-                    <input type="checkbox" id="sidebar">
-                    <label for="sidebar">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </label>
-                    <div class="right_sidebar">
-                        <div class ="sidebar_item">
-                            <input type="button" value='Home' id="btn" onclick="location.href='./'">
-                            <input type="button" value='Login' id="btn" onclick="location.href='./login'">
-                            <input type="button" value='Signin' id="btn" onclick="location.href='./signin'">
-                            <input type="button" value='Write' id="btn" onclick="location.href='./'">
-                        </div>
-                    </div>
-                </div>
-                <div class="menu_rest" onclick="location.href='./'"></div>
-            </div>            
-        </div>
-
-
-        <div class ="header_lower">
-            <div class="toolbar">
-                <ul class="menu_line">
-                    <li><a href="#">MENU1</a>
-                        <ul class="menu_item">
-                            <li><a href="#">SUB_MENU</a></li>
-                            <li><a href="#">SUB_MENU2</a></li>
-                            <li><a href="#">SUB_MENU3</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#">MENU2</a>
-                        <ul class="menu_item">
-                            <li><a href="#">SUB_MENU</a></li>
-                            <li><a href="#">SUB_MENU2</a></li>
-                            <li><a href="#">SUB_MENU3</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#">MENU3</a>
-                        <ul class="menu_item">
-                            <li><a href="#">SUB_MENU</a></li>
-                            <li><a href="#">SUB_MENU2</a></li>
-                            <li><a href="#">SUB_MENU3</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#">MENU4</a>
-                        <ul class="menu_item">
-                            <li><a href="#">SUB_MENU</a></li>
-                            <li><a href="#">SUB_MENU2</a></li>
-                            <li><a href="#">SUB_MENU3</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="#">MENU5</a>
-                        <ul class="menu_item">
-                            <li><a href="#">SUB_MENU</a></li>
-                            <li><a href="#">SUB_MENU2</a></li>
-                            <li><a href="#">SUB_MENU3</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </header>
+    <div id="headers">
+    </div>
 
     <div class = "main">
         <div class = "blogbody">
@@ -440,7 +187,7 @@
 </body>
 </html>
 
-<script>
+<!-- <script>
     const signin_btn = document.querySelector('.admin');
 
     if(document.cookie.indexOf('user=') === -1) {
@@ -462,4 +209,4 @@
         });
         state.append(logoutBtn);
     }
-</script>
+</script> -->
