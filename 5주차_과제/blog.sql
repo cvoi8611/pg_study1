@@ -18,122 +18,108 @@ CREATE SCHEMA IF NOT EXISTS `DB1` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_
 USE `DB1` ;
 
 -- -----------------------------------------------------
--- Table `DB1`.`Login`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `DB1`.`Login` (
-  `id_login` INT NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`id_login`),
-  UNIQUE INDEX `id_login_UNIQUE` (`id_login` ASC) VISIBLE)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
-
-
--- -----------------------------------------------------
--- Table `DB1`.`Main Page`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `DB1`.`Main Page` (
-  `id_main` INT NOT NULL AUTO_INCREMENT,
-  `Login_id_login` INT NOT NULL,
-  PRIMARY KEY (`id_main`),
-  UNIQUE INDEX `id_main_UNIQUE` (`id_main` ASC) VISIBLE,
-  INDEX `fk_Main Page_Login1_idx` (`Login_id_login` ASC) VISIBLE,
-  CONSTRAINT `fk_Main Page_Login1`
-    FOREIGN KEY (`Login_id_login`)
-    REFERENCES `DB1`.`Login` (`id_login`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
-
-
--- -----------------------------------------------------
 -- Table `DB1`.`Category`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `DB1`.`Category` (
   `id_category` INT NOT NULL AUTO_INCREMENT,
-  `Main Page_id_main` INT NOT NULL,
+  `cate_name` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id_category`),
-  UNIQUE INDEX `id_category_UNIQUE` (`id_category` ASC) VISIBLE,
-  INDEX `fk_Category_Main Page1_idx` (`Main Page_id_main` ASC) VISIBLE,
-  CONSTRAINT `fk_Category_Main Page1`
-    FOREIGN KEY (`Main Page_id_main`)
-    REFERENCES `DB1`.`Main Page` (`id_main`))
+  UNIQUE INDEX `id_category_UNIQUE` (`id_category` ASC) VISIBLE)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
--- Table `DB1`.`Contents`
+-- Table `DB1`.`Main`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `DB1`.`Contents` (
-  `id_cont` INT NOT NULL AUTO_INCREMENT,
-  `Main Page_id_main` INT NOT NULL,
-  `Contents_id_cont` INT NOT NULL,
-  PRIMARY KEY (`id_cont`),
-  UNIQUE INDEX `id_cont_UNIQUE` (`id_cont` ASC) VISIBLE,
-  INDEX `fk_Contents_Main Page_idx` (`Main Page_id_main` ASC) VISIBLE,
-  INDEX `fk_Contents_Contents1_idx` (`Contents_id_cont` ASC) VISIBLE,
-  CONSTRAINT `fk_Contents_Contents1`
-    FOREIGN KEY (`Contents_id_cont`)
-    REFERENCES `DB1`.`Contents` (`id_cont`),
-  CONSTRAINT `fk_Contents_Main Page`
-    FOREIGN KEY (`Main Page_id_main`)
-    REFERENCES `DB1`.`Main Page` (`id_main`))
+CREATE TABLE IF NOT EXISTS `DB1`.`Main` (
+  `id_main` INT NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id_main`),
+  UNIQUE INDEX `id_main_UNIQUE` (`id_main` ASC) VISIBLE)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;
 
 
 -- -----------------------------------------------------
--- Table `DB1`.`Category_has_Contents`
+-- Table `DB1`.`User`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `DB1`.`Category_has_Contents` (
-  `Category_id_category` INT NOT NULL,
-  `Contents_id_cont` INT NOT NULL,
-  PRIMARY KEY (`Category_id_category`, `Contents_id_cont`),
-  INDEX `fk_Category_has_Contents_Contents1_idx` (`Contents_id_cont` ASC) VISIBLE,
-  INDEX `fk_Category_has_Contents_Category1_idx` (`Category_id_category` ASC) VISIBLE,
-  CONSTRAINT `fk_Category_has_Contents_Category1`
-    FOREIGN KEY (`Category_id_category`)
-    REFERENCES `DB1`.`Category` (`id_category`),
-  CONSTRAINT `fk_Category_has_Contents_Contents1`
-    FOREIGN KEY (`Contents_id_cont`)
-    REFERENCES `DB1`.`Contents` (`id_cont`))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
-
-
--- -----------------------------------------------------
--- Table `DB1`.`TB1`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `DB1`.`TB1` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `name` VARCHAR(16) NOT NULL,
-  `msg` VARCHAR(32) NULL DEFAULT 'no message',
-  PRIMARY KEY (`id`))
-ENGINE = InnoDB
-AUTO_INCREMENT = 2
-DEFAULT CHARACTER SET = utf8mb4
-COLLATE = utf8mb4_0900_ai_ci;
-
-
--- -----------------------------------------------------
--- Table `DB1`.`user`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `DB1`.`user` (
+CREATE TABLE IF NOT EXISTS `DB1`.`User` (
   `uid` INT NOT NULL AUTO_INCREMENT,
+  `user_name` VARCHAR(45) NOT NULL,
   `user_id` VARCHAR(45) NOT NULL,
   `user_pwd` VARCHAR(45) NOT NULL,
-  `Login_id_login` INT NOT NULL,
   PRIMARY KEY (`uid`),
   UNIQUE INDEX `uid_UNIQUE` (`uid` ASC) VISIBLE,
-  UNIQUE INDEX `user_id_UNIQUE` (`user_id` ASC) VISIBLE,
-  INDEX `fk_user_Login1_idx` (`Login_id_login` ASC) VISIBLE,
-  CONSTRAINT `fk_user_Login1`
-    FOREIGN KEY (`Login_id_login`)
-    REFERENCES `DB1`.`Login` (`id_login`))
+  UNIQUE INDEX `user_id_UNIQUE` (`user_id` ASC) VISIBLE)
+ENGINE = InnoDB
+AUTO_INCREMENT = 3
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `DB1`.`Content`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `DB1`.`Content` (
+  `id_cont` INT NOT NULL AUTO_INCREMENT,
+  `cont_num` INT NOT NULL,
+  `Main_id_main` INT NOT NULL,
+  `User_uid` INT NOT NULL,
+  PRIMARY KEY (`id_cont`),
+  UNIQUE INDEX `id_cont_UNIQUE` (`id_cont` ASC) VISIBLE,
+  INDEX `fk_Content_Main1_idx` (`Main_id_main` ASC) VISIBLE,
+  INDEX `fk_Content_User1_idx` (`User_uid` ASC) VISIBLE,
+  CONSTRAINT `fk_Content_Main1`
+    FOREIGN KEY (`Main_id_main`)
+    REFERENCES `DB1`.`Main` (`id_main`),
+  CONSTRAINT `fk_Content_User1`
+    FOREIGN KEY (`User_uid`)
+    REFERENCES `DB1`.`User` (`uid`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `DB1`.`Category_has_Content`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `DB1`.`Category_has_Content` (
+  `Category_id_category` INT NOT NULL,
+  `Content_id_cont` INT NOT NULL,
+  PRIMARY KEY (`Category_id_category`, `Content_id_cont`),
+  INDEX `fk_Category_has_Content_Content1_idx` (`Content_id_cont` ASC) VISIBLE,
+  INDEX `fk_Category_has_Content_Category1_idx` (`Category_id_category` ASC) VISIBLE,
+  CONSTRAINT `fk_Category_has_Content_Category1`
+    FOREIGN KEY (`Category_id_category`)
+    REFERENCES `DB1`.`Category` (`id_category`),
+  CONSTRAINT `fk_Category_has_Content_Content1`
+    FOREIGN KEY (`Content_id_cont`)
+    REFERENCES `DB1`.`Content` (`id_cont`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4
+COLLATE = utf8mb4_0900_ai_ci;
+
+
+-- -----------------------------------------------------
+-- Table `DB1`.`Comment`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `DB1`.`Comment` (
+  `id_comment` INT NOT NULL AUTO_INCREMENT,
+  `comment_num` INT NOT NULL DEFAULT '0',
+  `Content_id_cont` INT NOT NULL,
+  `User_uid` INT NOT NULL,
+  PRIMARY KEY (`id_comment`),
+  UNIQUE INDEX `id_comment_UNIQUE` (`id_comment` ASC) VISIBLE,
+  INDEX `fk_Comment_Content1_idx` (`Content_id_cont` ASC) VISIBLE,
+  INDEX `fk_Comment_User1_idx` (`User_uid` ASC) VISIBLE,
+  CONSTRAINT `fk_Comment_Content1`
+    FOREIGN KEY (`Content_id_cont`)
+    REFERENCES `DB1`.`Content` (`id_cont`),
+  CONSTRAINT `fk_Comment_User1`
+    FOREIGN KEY (`User_uid`)
+    REFERENCES `DB1`.`User` (`uid`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_0900_ai_ci;

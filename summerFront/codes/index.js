@@ -14,6 +14,8 @@ const connection = mysql.createConnection(dbconfig);
 
 const path = require('path');
 
+
+
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname));
 
@@ -34,20 +36,21 @@ app.listen(port, () => {
 	console.log(`Example app listening on port ${port}`);
 });
 
-app.get('/',(req,res) => {
-	res.sendFile(path.join(__dirname,'./','front','main.html'));
-});
-
 app.get('/api',(req,res) => {
-	connection.query('SELECT * FROM TB1', (error, rows) => {
-	if (error) throw error;
-	res.send(rows);
+	connection.query('SELECT * FROM TB1.User', (error, result) => {
+	    if (error) throw error;
+        res.send(result);
 	});
 });
+
 
 ///////////////
 //// GET
 ///////////////
+
+app.get('/',(req,res) => {
+	res.sendFile(path.join(__dirname,'./','front','main.html'));
+});
 
 app.get('/login', (req, res) => {
     res.sendFile(path.join(__dirname,'./','front','login.html'));
@@ -62,25 +65,59 @@ app.get('/post', (req, res) => {
 });
 
 app.get('/header', (req, res) => {
-    res.sendFile(path.join(__dirname,'./','front','header.html'));
+    res.sendFile(path.join(__dirname,'./','front','fullheader.html'));
+    // if (req.session.user != true){
+    //     res.sendFile(path.join(__dirname,'./','front','header_logout.html'));
+    // }
+    // else {
+    //     res.sendFile(path.join(__dirname,'./','front','header_login.html'));
+    // }
 });
 
 ///////////////
-//// 회원가입, 로그인, 로그아웃
+//// 회원가입
+///////////////
+
+app.post('/signin', (req, res) => {
+	//json 데이터 추출
+    const { user_name, user_id, user_pwd } = req.body;
+	
+	const sql = 'INSERT INTO DB1.User (user_name, user_id, user_pwd) VALUES (${user_name}, ${user_id}, ${user_pwd})';
+	connection.query(sql);
+
+    console.log("회원가입이 완료되었습니다.");
+    res.redirect('/login');
+});
+
+///////////////
+//// 로그인
 ///////////////
 
 app.post('/login', (req, res) => {
-    if (req.session.user_id ? req.session.user_pwd == 'test' : false) {
-        console.log("아이디 test 통과");
+    if (req.session.user ? req.session.user.id == 'test' : false) {
+        console.log(`${req.session.user} ? ${req.session.user.id} == 'test' : false`);
+        console.log("로그인 유지");
         res.redirect('/');
     }
+
     else if(req.body.user_id == 'test' && req.body.user_pwd == '1234') {
         req.session.user = {
             id: req.body.id,
         };
         
-        res.setHeader('Set-Cookie', ['user=' + req.body.id]);
+        res.setHeader('Set-Cookie', ['user=' + req.body.user_id]);
         console.log("아이디 test, 비밀번호 1234 통과");
+        res.redirect('/');
+    }
+
+
+    else if(req.body.user_id == '' && req.body.user_pwd == '') {
+        req.session.user = {
+            id: req.body.id,
+        };
+        
+        res.setHeader('Set-Cookie', ['user=' + req.body.user_id]);
+        console.log(`아이디 ${user_id}, 비밀번호 ${user_pwd} 통과`);
         res.redirect('/');
     }
     else {
@@ -89,16 +126,9 @@ app.post('/login', (req, res) => {
     }
 });
 
-app.post('/signin', (req, res) => {
-	//json 데이터 추출
-	const { user_name, user_id, user_pwd } = req.body;
-
-	const sql = 'INSERT INTO DB1.User (user_name, user_id, user_pwd) VALUES (${user_name}, ${user_id}, ${user_pwd})';
-	connection.query(sql);
-
-    console.log("회원가입이 완료되었습니다.");
-    res.redirect('/login');
-});
+///////////////
+//// 로그아웃
+///////////////
 
 app.get('/logout', (req, res) => {
     req.session.destroy((err) => {
@@ -120,3 +150,40 @@ app.get('/logout', (req, res) => {
 app.get('/board/ssr/:bid', (req, res) => {
     res.render('board', { title: req.params.bid , contents: 'this is SSR page' + req.params.bid });
 });
+
+//express.js에서 SQL 작성 위한 코드
+
+// app.get('/api', (req, res) => {
+// 	connection.query('SELECT * FROM Test1', (error, rows) => {
+// 		if (error) throw error;
+// 		res.send(rows);
+// 	});
+// });
+
+// app.post('/api', (req, res) => {
+// 	//json 데이터 추출
+// 	const { name, age, address } = req.body;
+	
+// 	const sql = 'INSERT INTO Test1 (name, age, address) VALUES '(${name}, ${age}, ${address})'';
+// 	connection.query(sql);
+
+// 	res.redirect('http://ubserver/');
+// });
+
+// app.put('/api', (req, res) => {
+// 	const { name, age, address } = req.body;
+
+// 	const sql = 'UPDATE Test1 SET age = '${age}', address = '${address}' WHERE name = '${name}'';
+// 	connection.query(sql);
+
+// 	res.redirect('http://ubserver/');
+// });
+
+// app.delete('/api', (req, res) => {
+// 	const { name } = req.body;
+
+// 	const sql = 'DELETE FROM Test1 WHERE name = '${name}'';
+// 	connection.query(sql);
+
+// 	res.redirect('http://ubserver/');
+// });
