@@ -83,7 +83,7 @@ app.post('/signin', (req, res) => {
     const { user_name, user_id, user_pwd } = req.body;
     console.log(`user name : ${user_name}, user id : ${user_id}, user pwd: ${user_pwd}`);
 	
-	const sql = 'INSERT INTO DB1.User (user_name, user_id, user_pwd) VALUES (${user_name}, ${user_id}, ${user_pwd})';
+	const sql = 'INSERT INTO User (user_name, user_id, user_pwd) VALUES (${user_name}, ${user_id}, ${user_pwd});';
 	connection.query(sql);
 
     console.log("회원가입이 완료되었습니다.");
@@ -96,7 +96,7 @@ app.post('/signin', (req, res) => {
 
 app.post('/login', (req, res) => {
     console.log(`${req.session.user} ? ${req.session.user_id} == 'test' : false`);
-    if (req.session.user ? req.session.user.id == 'test' : false) {
+    if (req.session.user ? req.session.user_id == 'test' : false) {
         console.log("로그인 유지");
         res.redirect('/');
     }
