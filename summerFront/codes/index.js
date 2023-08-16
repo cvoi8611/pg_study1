@@ -37,7 +37,7 @@ app.listen(port, () => {
 });
 
 app.get('/api',(req,res) => {
-	connection.query('SELECT * FROM TB1.User', (error, result) => {
+	connection.query('SELECT * FROM DB1.User', (error, result) => {
 	    if (error) throw error;
         res.send(result);
 	});
@@ -81,6 +81,7 @@ app.get('/header', (req, res) => {
 app.post('/signin', (req, res) => {
 	//json 데이터 추출
     const { user_name, user_id, user_pwd } = req.body;
+    console.log(`user name : ${user_name}, user id : ${user_is}, user pwd: ${user_pwd}`)
 	
 	const sql = 'INSERT INTO DB1.User (user_name, user_id, user_pwd) VALUES (${user_name}, ${user_id}, ${user_pwd})';
 	connection.query(sql);
@@ -94,8 +95,8 @@ app.post('/signin', (req, res) => {
 ///////////////
 
 app.post('/login', (req, res) => {
+    console.log(`${req.session.user} ? ${req.session.user_id} == 'test' : false`);
     if (req.session.user ? req.session.user.id == 'test' : false) {
-        console.log(`${req.session.user} ? ${req.session.user.id} == 'test' : false`);
         console.log("로그인 유지");
         res.redirect('/');
     }
@@ -111,7 +112,7 @@ app.post('/login', (req, res) => {
     }
 
 
-    else if(req.body.user_id == '' && req.body.user_pwd == '') {
+    else if(req.body.user_id == '12' && req.body.user_pwd == '12') {
         req.session.user = {
             id: req.body.id,
         };
@@ -147,9 +148,9 @@ app.get('/logout', (req, res) => {
 // 라우팅
 ///////////
 
-app.get('/board/ssr/:bid', (req, res) => {
-    res.render('board', { title: req.params.bid , contents: 'this is SSR page' + req.params.bid });
-});
+// app.get('/board/ssr/:bid', (req, res) => {
+//     res.render('board', { title: req.params.bid , contents: 'this is SSR page' + req.params.bid });
+// });
 
 //express.js에서 SQL 작성 위한 코드
 
