@@ -81,7 +81,7 @@ app.get('/header', (req, res) => {
 app.post('/signin', (req, res) => {
 	//json 데이터 추출
     const { user_name, user_id, user_pwd } = req.body;
-    console.log(`user name : ${user_name}, user id : ${user_is}, user pwd: ${user_pwd}`)
+    console.log(`user name : ${user_name}, user id : ${user_id}, user pwd: ${user_pwd}`);
 	
 	const sql = 'INSERT INTO DB1.User (user_name, user_id, user_pwd) VALUES (${user_name}, ${user_id}, ${user_pwd})';
 	connection.query(sql);
