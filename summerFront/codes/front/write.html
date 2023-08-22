@@ -25,71 +25,7 @@
             width : 80%;
             height : 100%;
         }
-        
-        .toolbar {
-            z-index : 1;
-            display : flex;
-            flex-direction: row;
-            border-top : 3px solid white;
-            border-bottom : 3px solid white;
-            flex-wrap: wrap;
-            width : 100%;
-            height : 10%;
-        }
-        
-        .toolbar li {
-            float: left;
-            list-style: none;
-        }
-        
-        .toolbar a {
-            color: #fff;
-            text-decoration: none;
-            font-size:20px;
-        }
-        
-        .menu_line {
-            margin : 0;
-            padding : 0;
-            width: 100%;
-            overflow: hidden;
-        }
-        
-        .menu_line > li {
-            width: 20%;
-            float: left;
-            text-align: center;
-            line-height: 80px;
-            background-color: #121212;
-        }
-        
-        .menu_item > li {
-            position: relative;
-            border-bottom: 2px inset white;
-            float : none;
-            line-height: 80px;
-            background-color: #2E2E2E;
-        }
-        
-        .menu_item {
-            position: relative;
-            z-index : 2;
-            padding: 0;
-            height: 0;
-            overflow: hidden;
-        }
-        .menu_line > li:hover {
-            background-color: #252525;
-            transition-duration: 0.5s;
-        }
-        
-        .menu_line > li:hover .menu_item {
-            position: absolute;
-            width : 20%;
-            height: 250px;
-            transition-duration: 1s;
-        }
-        
+
         .blogbody {
             display : flex;
             border-right : 3px solid white;
@@ -119,6 +55,7 @@
         
         .post .content {
             display : flex;
+            flex-direction: column;
             justify-content: space-between;
             width : 70%;
             height: 100%;
@@ -134,43 +71,83 @@
         .html {
             display : flex;
             flex-direction: column;
-            width : 100%;
-            height : 1000px;
-        }
-        
-        .in_title {
             justify-content: center;
             align-items: center;
+            width : 100%;
+            height : 400px;
+        }
+        
+
+
+
+        .in_title {
             display : flex;
             width : 100%;
-            height : 20%;
+            height : 30%;
+        }
+
+        .in_title label {
+            height: 100%;
+            width : 100%;
+        }
+
+        .in_title input {
+            margin : 0px;
+            padding : 0px;
+        }
+
+        .lab_title{
+            display : flex;
+            justify-content: center;
+            align-items: top;
+            margin-top: 30px;
         }
         
         .inp_title {
+            display : flex;
+            font-size: 20px;
             width : 80%;
-            height : 30%;
-            /* margin-top: 50px;
-            margin-bottom: 60px; */
-            border : 2px solid white;
+            height : 40%;
             border-radius: 15px;
         }
         
-        .in.content {
+
+
+
+
+        .in_content {
+            justify-content: center;
             display : flex;
             width : 100%;
-            height : 80%;
+            height : 70%;
         }
         
+        .in_content label {
+            height: 30%;
+            width : 100%;
+        }
+
+        .lab_content{
+            display : flex;
+            justify-content: center;
+        }
+
         .inp_content {
+            font-size: 20px;
             width : 80%;
-            height : 90%;
-            margin-bottom: 800px;
+            height : 40%;
+            padding-top : 100px;
+            padding-bottom : 100px;
             border : 2px solid white;
             border-radius: 15px;
         }
         
+
+
+
         .categoryline {
             display: flex;
+            flex-direction: column;
             justify-content: space-evenly;
             height : 10%;
             width : 100%;
@@ -178,15 +155,26 @@
             border : 2px solid white;
             border-radius: 15px;
         }
-        
-        .buttonline {
-            display : flex;
-            width : 100%;
-            justify-content: space-between;
-            
+
+        .categoryline label {
+            margin-top : 5px;
+            margin-bottom: 5px;
         }
         
-        .buttonline button {
+        .buttonline_upper {
+            display : flex;
+            height : 55px;
+            width : 100%;
+            justify-content: left;
+        }
+
+        .buttonline_under {
+            display : flex;
+            width : 100%;
+            justify-content: right;
+        }
+        
+        button {
             display : flex;
             justify-content: center;
             align-items: center;
@@ -195,8 +183,19 @@
             margin-top : 15px;
             margin-bottom: 15px;
         }
+
+
+
     </style>
     <title>Covi's Blog</title>
+
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript">
+    $(document).ready( function() {
+    $("#headers").load("header"); 
+    });
+</script>
+
 </head>
 
 <body>
@@ -207,28 +206,32 @@
         <div class = "blogbody">
             <div class = "post">
                 <div class = "content">
-                    <div class = "html">
-                        <div class = "in_title">
-                            <input type="text" placeholder="제목을 입력하세요" class = "inp_title">
+                    <form action = "../" method="get">
+                        <div class = button_upper>
+                            <button>Back</button>
                         </div>
-                        <div class = "in_content">
-                            <input type="text" placeholder="내용을 입력하세요" class = "inp_content">
+                    </form>
+                    <form action ="/write" method="post">
+                        <div class = "html">
+                            <div class = "in_title">
+                                <label class = "lab_title"><input name="post_title" type="text" placeholder="제목을 입력하세요" class = "inp_title"></label>
+                                <input type="text" style="display:none">
+                            </div>
+                            <div class = "in_content">
+                                <label class = "lab_content"><input hidden="hidden" /><input name="post_content" type="text" placeholder="내용을 입력하세요" class = "inp_content"></label>
+                                <input type="text" style="display:none">
+                            </div>
                         </div>
-                    </div>
-                    <div class = "categoryline">
-                        <label><input type="checkbox" class = category value="ctgr1"> Category 1</label>
-                        <label><input type="checkbox" class = category value="ctgr2"> Category 2</label>
-                        <label><input type="checkbox" class = category value="ctgr3"> Category 3</label>
-                        <label><input type="checkbox" class = category value="ctgr4"> Category 4</label>
-                        <label><input type="checkbox" class = category value="ctgr5"> Category 5</label>
-                    </div>
-                    <div class = "buttonline">
-                        <button>Back</button>
-                        <button>Upload</button>
-                    </div>
+                        <div class = "categoryline">
+                            <label> Category <input name="ctgr" type="text" placeholder="카테고리를 입력하세요" class=category></label>
+                            <input type="text" style="display:none">
+                        </div>
+                        <div class = "buttonline_under">
+                            <button>Upload</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
 </body>
-</html>

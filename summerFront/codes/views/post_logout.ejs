@@ -1,0 +1,143 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="./post.css?after">
+    <style>
+        body {
+            width : 100%;
+            height : 100%;
+            margin : 0;
+            background-color: #121212;
+        }
+        
+        .main {
+            display : flex;
+            flex-wrap: wrap;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .container {
+            display : flex;
+            flex-wrap : wrap;
+            width : 80%;
+            height : 100%;
+        }
+
+        .blogbody {
+            display : flex;
+            border-right : 3px solid white;
+            border-left : 3px solid white;
+            flex-direction: column;
+            flex-basis: 10;
+            text-align: center;
+            align-items: center;
+            margin-left: 20%;
+            margin-right: 20%;
+            width: 60%;
+            height : 100%;
+            background-color: #121212;
+            margin-bottom : 10%;
+        }
+        
+        .post {
+            display : flex;
+            justify-content: center;
+            width : 100%;
+            height: 80%;
+            border-top : 3px solid white;
+            border-bottom : 3px solid white;
+            background-color: #121212;
+            margin-top: 100px;
+        }
+        
+        .post .content {
+            display : flex;
+            justify-content: space-between;
+            width : 70%;
+            height: 100%;
+            border-left : 2px solid white;
+            border-right : 2px solid white;
+            background-color :#121212;
+            color : white;
+            padding-left: 30px;
+            padding-right: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .categoryline {
+            display: flex;
+            width : 100%;
+        }
+        
+        .category {
+            width : auto;
+            height: auto;
+            padding : 5px;
+            border : 2px solid white;
+            border-radius: 15px;
+            margin : 10px;
+        }
+        
+        
+        .buttonline {
+            display : flex;
+            width : 100%;
+            justify-content: space-between;
+            
+        }
+        
+        .buttonline button {
+            display : flex;
+            justify-content: center;
+            align-items: center;
+            width : 100px;
+            height : 50px;
+            margin-top : 15px;
+            margin-bottom: 15px;
+        }
+    </style>
+    <title>Covi's Blog</title>
+
+<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script>
+    $(document).ready( function() {
+        $("#headers").load("header"); 
+    });
+</script> 
+
+
+
+</head>
+<body> -->
+    <%-include ('header_logout.ejs') %>
+    
+    <div class = "main">
+        <div class = "blogbody">
+            <div class = "post">
+                <div class = "image">
+                </div>
+                <div class = "content">
+                    <div class = "html">
+                        <p><h1> 
+                            <%= title %>
+                        </h1></p>
+                        <p><h4>
+                            <%= contents %>
+                        </h4></p>
+                </div>
+
+                <div class = "categoryline">
+                    <div name=ctgr class=category><%= category %></div>
+                </div>
+                <div class = "buttonline">
+                    <button>Prev</button>
+                    <button>Next</button>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</body>
